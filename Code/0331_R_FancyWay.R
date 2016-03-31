@@ -115,3 +115,63 @@ add.two.numbers<-function(num1,num2) {
 }
 
 add.two.numbers(2,3)
+
+
+#Basic histogram->hist(var, breaks=, col=, xlab=, main=)
+hist(gap.in$pop)
+
+hist(gap.in$lifeExp, breaks=2)
+
+hist(gap.in$lifeExp, breaks=6, main="World Life Expect", ylab="rows of years of countries", xlab="years")
+
+hist(gap.in$lifeExp,
+     breaks=6,
+     main="World Life Expect",
+     ylab="rows of years of countries",
+     xlab="years")
+
+
+# Bar plot ->barplot(counts, main=, xlab=, col=, legend=)
+
+counts<- c(gap.in$gdpPercap, gap.in$lifeExp)
+barplot(counts)
+
+#boxplot(y ~ x, additional_arguments)
+boxplot(gap.in$gdpPercap ~ gap.in$continent, main="nice")
+
+boxplot(gap.in$gdpPercap ~ gap.in$continent,
+        main="nice")
+
+
+# ~ is how you write modern formulas in R.  ~ is replacing the = sign
+
+
+# Scatter->plot(x, y, main=, xlab=, ylab=)
+plot(gap.in$year, gap.in$lifeExp)
+
+# make rh wplot of lifeExp of one country only
+plot(gap.in$year, gap.in$lifeExp, group_by(country))
+
+gap.in %>%
+  filter(country %in% c("China", "Argentina", "Sri Lanka")) %>%
+  select(country,year,lifeExp) %>%
+  group_by(country) %>%
+  summarize(lifeExpMean = mean(lifeExp), LifeExpSD = sd(lifeExp), LifeExpSum = sum(lifeExp))%>%
+  plot(gap.in$year~gap.in$lifeExpMean)
+
+
+plot(gap.in$year[gap.in$country == "Brazil"], gap.in$lifeExp[gap.in$country =="Brazil"], type="l")
+
+
+# Best fit line -> abline(lm(y~x),col=)
+abline(lm(gap.in$lifeExp~gap.in$year), col="red")
+# Linear model fit for all the data over the Brazil data
+
+#linear model
+gap.model<-lm(gap.in$lifeExp~gap.in$year)
+str(gap.model)
+
+#ANOVA
+aov(gap.model)
+
+anova(gap.model)
