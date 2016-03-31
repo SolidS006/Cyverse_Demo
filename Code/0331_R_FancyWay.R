@@ -85,5 +85,33 @@ gap.in %>%
   summarize(meanLifeExp = mean(lifeExp)) %>%
   arrange(desc(meanLifeExp))
 
-->summarized.gap
+gap.in %>%
+  group_by(country)%>%
+  summarize(meanLifeExp = mean(lifeExp)) %>%
+  arrange(desc(meanLifeExp))->summarized.gap.in
 
+#############
+# FUNCTIONS #
+#############
+
+# programming is all about googling, using help etc.
+# the second you are getting frustrated, stop and just google and do copy pasting.
+
+
+add.two.numbers<-function(num1,num2) {
+  num1 + num2
+}
+
+
+add.two.numbers(2,3)
+
+
+# A custome function can be made to do wonders
+# do not forget the curly braces, wnen you do this
+
+add.two.numbers<-function(num1,num2) {
+  num3<-num1 + num2
+  num1 + num2
+}
+
+add.two.numbers(2,3)
