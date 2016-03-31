@@ -86,3 +86,9 @@ gap.in$lifeExp[gap.in$country=="China" | gap.in$country=="India"]
 
 #  A shortcut
 gap.in$lifeExp[gap.in$country %in% c("China","Argentina")]
+
+
+gap.in$year == 1952 & gap.in$country == "China"
+gap.in$lifeExp[gap.in$year == 1952 & gap.in$country == "China"]
+
+
