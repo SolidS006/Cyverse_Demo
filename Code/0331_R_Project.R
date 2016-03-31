@@ -55,5 +55,34 @@ gap.in$lifeExp[1:3]
 # to pull out the 5th column whatever it is
 gap.in[1:3,5]
 
-To add 3 to all the numbers
+#To add 3 to all the numbers
 gap.in$lifeExp[1:3]+2
+
+# Boolean subsetting
+#what if we want the life expectancy of China?
+gap.in$lifeExp
+
+gap.in$country
+# gives all the different countries
+
+gap.in$country =="China"
+# note that China is a factor, but still is inside the quotes.  Because we are sepcifically searching for the term China
+# It's parsing the integers for te China behind the scenes
+
+# note R is not written as a programming language.  It is built to do stuff. It looks for China as  a string of characters.
+# it is kind of idiot-proofing, but sometimes can be counter intuitive, if you do not have any other language experince
+
+gap.in$lifeExp[gap.in$country=="China"]
+
+gap.in$lifeExp[gap.in$country=="Sri Lanka"]
+
+gap.in$lifeExp[gap.in$country=="United States"]
+
+gap.in$lifeExp[gap.in$country=="China" & gap.in$country=="India"]
+
+gap.in$country=="China" | gap.in$country=="India"
+
+gap.in$lifeExp[gap.in$country=="China" | gap.in$country=="India"]
+
+#  A shortcut
+gap.in$lifeExp[gap.in$country %in% c("China","Argentina")]
