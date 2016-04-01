@@ -13,6 +13,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
+gap.in<-read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+
+gap.in<-read.csv("https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv")
+
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
@@ -29,5 +33,40 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-$2^2+x$
+gap.in <- read.csv("http://naupaka.net/files/gapminder.csv")
+
+gap.in$lifeExp[gap.in$country=="China"]
+
+gap.in %>%
+  filter(country %in% c("China", "Argentina", "Sri Lanka")) %>%
+  select(country,year,lifeExp) %>%
+  group_by(country) %>%
+  summarize(lifeExpMean = mean(lifeExp), LifeExpSD = sd(lifeExp), LifeExpSum = sum(lifeExp))
+  plot(gap.in$year~gap.in$lifeExpMean)
+  
+  install.packages("dplyr", dependencies = TRUE)
+
+library("dplyr")
+
+gap.in %>%
+  group_by(country)%>%
+  summarize(meanLifeExp = mean(lifeExp))
+  
+plot(gap.in$year, gap.in$lifeExp)
+
+plot(gap.in$year[gap.in$country == "Sri Lanka"], gap.in$lifeExp[gap.in$country =="Sri Lanka"], type="l",ylim=c(20,100))
+
+plot(gap.in$year[gap.in$country == "Sri Lanka"], gap.in$lifeExp[gap.in$country =="Sri Lanka"], type="l", ylim=c(35,90),col="red", main ="Life Expectancy")
+
+points(gap.in$year[gap.in$country == "Australia"], gap.in$lifeExp[gap.in$country =="Australia"], type="l",col="forestgreen")
+
+points(gap.in$year[gap.in$country == "India"], gap.in$lifeExp[gap.in$country =="India"], type="l",col="orange")
+
+gap.in %>%
+  filter(continent %in% c("Asia", "America","Australia")) %>%
+  select(continent,year,lifeExp) %>%
+  group_by(continent) %>%
+  summarize(lifeExpMean = mean(lifeExp), LifeExpSD = sd(lifeExp), LifeExpSum = sum(lifeExp))
+
+
 
